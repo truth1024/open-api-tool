@@ -44,7 +44,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.tenddata.openapi.Open</mainClass>
+                            <mainClass>com.tenddata.openapi.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
