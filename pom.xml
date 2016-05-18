@@ -64,6 +64,6 @@
 
         </plugins>
 
-        <finalName>open-api-tool</finalName>
+        <finalName>change-email-analytics-tool</finalName>
     </build>
 </project>
