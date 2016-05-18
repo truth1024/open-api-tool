@@ -14,6 +14,10 @@ public class Dao {
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 
+    public int update(String sql) {
+        return jdbcTemplate.update(sql);
+    }
+
 
     public JdbcTemplate getJdbcTemplate() {
         return jdbcTemplate;

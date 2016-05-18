@@ -36,9 +36,9 @@ public class Main {
                     remind();
                     break;
             }
-            if(!StringUtils.isEmpty(sql)){
-                sendEmailContent(sql);
-            }
+//            if(!StringUtils.isEmpty(sql)){
+//                sendEmailContent(sql);
+//            }
         }else{
             remind();
         }
