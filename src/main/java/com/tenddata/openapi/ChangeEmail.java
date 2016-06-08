@@ -30,8 +30,11 @@ public class ChangeEmail {
                 developerid = dao.queryDeveloperidByEmail(oldEmail);
                 System.out.println("old developerid : " + developerid);
             } catch (Exception e) {
-                System.out.println("通用版不存在" + oldEmail + "账户");
-                e.printStackTrace();
+                if(e.getMessage().contains("Incorrect result size")){
+                    System.out.println("通用版不存在" + oldEmail + "账户");
+                }else {
+                    e.printStackTrace();
+                }
                 return sql;
             }
             try {
@@ -41,7 +44,12 @@ public class ChangeEmail {
                     canUpdate = false;
                 }
             } catch (Exception e) {
-                System.out.println("newEmail is not exist, can update.");
+                if(e.getMessage().contains("Incorrect result size")){
+                    System.out.println("newEmail is not exist, can update.");
+                }else{
+                    e.printStackTrace();
+                    canUpdate = false;
+                }
             }
             if(canUpdate){
                 sql = "update developer set email = '"+newEmail+"' where email = '"+oldEmail+"' and developerid = "+developerid+";";
