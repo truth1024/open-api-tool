@@ -25,14 +25,33 @@ public class ChangeEmail {
             Dao dao = context.getBean(Dao.class);
             System.out.println("oldEmail : "+oldEmail+",newEmail : "+newEmail);
             Integer developerid = null;
+            Integer newDeveloperid = null;
+            boolean canUpdate = false;
             try {
                 developerid = dao.queryDeveloperidByEmail(oldEmail);
-                System.out.println("developerid : " + developerid);
-                sql = "update developer set email = '"+newEmail+"' where email = '"+oldEmail+"' and developerid = "+developerid+";";
+                System.out.println("old developerid : " + developerid);
             } catch (Exception e) {
-                System.out.println("email is wrong or db is not exist.");
+                if(e.getMessage().contains("Incorrect result size")){
+                    System.out.println("old email is wrong or db is not exist.");
+                }else{
+                    e.printStackTrace();
+                }
+                return sql;
             }
-
+            try {
+                newDeveloperid = dao.queryDeveloperidByEmail(newEmail);
+                System.out.println("new developerid : " + newDeveloperid);
+            } catch (Exception e) {
+                if(e.getMessage().contains("Incorrect result size")){
+                    System.out.println("new email is not exist. can update");
+                    canUpdate = true;
+                }else{
+                    e.printStackTrace();
+                }
+            }
+            if(canUpdate){
+                sql = "update developer set email = '"+newEmail+"' where email = '"+oldEmail+"' and developerid = "+developerid+";";
+            }
         }
         return sql;
     }
