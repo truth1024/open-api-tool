@@ -1,7 +1,5 @@
 package com.tenddata.openapi;
 
-import org.springframework.util.StringUtils;
-
 /**
  * Created by LD on 2015/10/29 0029.
  */
@@ -31,6 +29,9 @@ public class Main {
                     } catch (Exception e) {
                         remind();
                     }
+                    break;
+                case extend:
+                    Extend.extendPlatform(args[1], args[2]);
                     break;
                 default:
                     remind();
