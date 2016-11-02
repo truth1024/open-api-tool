@@ -16,7 +16,7 @@ public class Extend {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring-bean.xml");
         Dao dao = context.getBean(Dao.class);
         System.out.println("appid : "+ appid +", platformid : "+platformid);
-        if(!"1".equals(platformid) || !"2".equals(platformid) || !"16".equals(platformid)){
+        if(!"1".equals(platformid) && !"2".equals(platformid) && !"16".equals(platformid)){
             System.out.println("platformid是非法的");
             return;
         }
