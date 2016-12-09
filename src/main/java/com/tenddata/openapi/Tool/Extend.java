@@ -9,15 +9,15 @@ import java.util.Map;
  */
 public class Extend extends Tool {
 
-    public static void extendPlatform(String appid,String platformid){
-        System.out.println("appid : "+ appid +", platformid : "+platformid);
-        if(!"1".equals(platformid) && !"2".equals(platformid) && !"16".equals(platformid)){
+    public static void extendPlatform(String appid, String platformid) {
+        System.out.println("appid : " + appid + ", platformid : " + platformid);
+        if (!"1".equals(platformid) && !"2".equals(platformid) && !"16".equals(platformid) && !"32".equals(platformid)) {
             System.out.println("platformid是非法的");
             return;
         }
         List<Map<String, Object>> mapList = dao.queryProductListByAppid(appid);
         //先判断应用是否存在
-        if(mapList == null || mapList.size() < 1){
+        if (mapList == null || mapList.size() < 1) {
             System.out.println("应用不存在");
             return;
         }
@@ -27,24 +27,24 @@ public class Extend extends Tool {
         boolean isExist = false;
         Map<String, Object> newMap = new HashMap<String, Object>();
         for (Map<String, Object> map : mapList) {
-            if(isFirst){
-                newMap.put("productid",map.get("productid"));
+            if (isFirst) {
+                newMap.put("productid", map.get("productid"));
                 newMap.put("sequencenumber", map.get("sequencenumber"));
                 newMap.put("developerid", map.get("developerid"));
                 newMap.put("platform", Integer.parseInt(platformid));
                 newMap.put("productype", map.get("productype"));
                 newMap.put("productname", map.get("productname"));
-                newMap.put("productmemo","");
+                newMap.put("productmemo", "");
                 newMap.put("registertime", map.get("registertime").toString().split("\\.")[0]);
                 newMap.put("iscompensate", 1);
                 isFirst = false;
             }
-            if(platformid.equals(map.get("platform").toString())){
+            if (platformid.equals(map.get("platform").toString())) {
                 isExist = true;
                 break;
             }
         }
-        if(isExist){
+        if (isExist) {
             System.out.println("要扩展的平台已经存在");
             return;
         }
@@ -53,20 +53,20 @@ public class Extend extends Tool {
         String sql = generateSql(newMap);
         System.out.println(sql);
         int update = dao.update(sql);
-        if(update > 0){
+        if (update > 0) {
             System.out.println("平台扩展成功");
         }
     }
 
-    private static String generateSql(Map<String,Object> map) {
+    private static String generateSql(Map<String, Object> map) {
         StringBuilder insertStr = new StringBuilder("insert into product (");
         StringBuilder valueStr = new StringBuilder();
         StringBuilder keyStr = new StringBuilder();
         for (String key : map.keySet()) {
             keyStr.append(",`").append(key).append("`");
-            if(map.get(key) instanceof Integer) {
+            if (map.get(key) instanceof Integer) {
                 valueStr.append(",").append(map.get(key));
-            }else {
+            } else {
                 valueStr.append(",'").append(map.get(key)).append("'");
             }
         }
