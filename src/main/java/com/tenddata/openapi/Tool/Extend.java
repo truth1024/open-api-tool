@@ -1,7 +1,4 @@
-package com.tenddata.openapi;
-
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+package com.tenddata.openapi.Tool;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,11 +7,9 @@ import java.util.Map;
 /**
  * Created by LD on 2016/10/24 0024.
  */
-public class Extend {
+public class Extend extends Tool {
 
     public static void extendPlatform(String appid,String platformid){
-        ApplicationContext context = new ClassPathXmlApplicationContext("spring-bean.xml");
-        Dao dao = context.getBean(Dao.class);
         System.out.println("appid : "+ appid +", platformid : "+platformid);
         if(!"1".equals(platformid) && !"2".equals(platformid) && !"16".equals(platformid)){
             System.out.println("platformid是非法的");

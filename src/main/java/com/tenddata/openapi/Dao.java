@@ -17,6 +17,18 @@ public class Dao {
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 
+    public int queryDeveloperCountByTime(String startTime,String endTime){
+        String sql = "select count(1) from developer where registertime between '"+startTime+"' and '"+endTime+"'";
+        System.out.println(sql);
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
+    public int queryProductCountByTime(String startTime,String endTime){
+        String sql = "select count(distinct productid) from product where registertime between '"+startTime+"' and '"+endTime+"'";
+        System.out.println(sql);
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
     public int update(String sql) {
         return jdbcTemplate.update(sql);
     }

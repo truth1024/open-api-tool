@@ -1,5 +1,6 @@
-package com.tenddata.openapi;
+package com.tenddata.openapi.Tool;
 
+import com.tenddata.openapi.Dao;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,7 +12,7 @@ import java.util.UUID;
 /**
  * Created by LD on 2015/10/27 0027.
  */
-public class Open {
+public class Open extends Tool{
 
     private static String getUUID(){
         return UUID.randomUUID().toString().replaceAll("-","");
@@ -25,10 +26,8 @@ public class Open {
     public static String openH5api(String email){
         String sql = null;
         if(!StringUtils.isEmpty(email)){
-            ApplicationContext context = new ClassPathXmlApplicationContext("spring-bean.xml");
-            Dao dao = context.getBean(Dao.class);
             System.out.println("email : "+email);
-            Integer developerid = null;
+            Integer developerid;
             try {
                 developerid = dao.queryDeveloperidByEmail(email);
                 System.out.println("developerid : " + developerid);

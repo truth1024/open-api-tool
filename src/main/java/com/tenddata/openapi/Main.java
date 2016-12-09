@@ -1,5 +1,10 @@
 package com.tenddata.openapi;
 
+import com.tenddata.openapi.Tool.ChangeEmail;
+import com.tenddata.openapi.Tool.Extend;
+import com.tenddata.openapi.Tool.NewCount;
+import com.tenddata.openapi.Tool.Open;
+
 /**
  * Created by LD on 2015/10/29 0029.
  */
@@ -32,6 +37,10 @@ public class Main {
                     break;
                 case extend:
                     Extend.extendPlatform(args[1], args[2]);
+                    break;
+                case newCount:
+                    NewCount.developer(args[1]);
+                    NewCount.product(args[1]);
                     break;
                 default:
                     remind();

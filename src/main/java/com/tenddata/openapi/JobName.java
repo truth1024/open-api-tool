@@ -9,7 +9,9 @@ public enum JobName {
     //更改账户email
     changeemail("更改开发者的邮箱，如果是changeemail时，则第二个参数是旧的email，第三个参数是新的email"),
     //扩展平台
-    extend("扩展平台，如果是extend时，则第二个参数是appid，第三个参数是平台id；android：1，ios：2，wp：4，html5：16");
+    extend("扩展平台，如果是extend时，则第二个参数是appid，第三个参数是平台id；android：1，ios：2，wp：4，html5：16"),
+
+    newCount("获取某月新增账户数和新增应用数，如果是newCount时，则第二个参数是时间，格式：yyyy-MM");
 
     String desc;
 

@@ -1,5 +1,6 @@
-package com.tenddata.openapi;
+package com.tenddata.openapi.Tool;
 
+import com.tenddata.openapi.Dao;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.util.StringUtils;
@@ -7,7 +8,7 @@ import org.springframework.util.StringUtils;
 /**
  * Created by LD on 2015/10/29 0029.
  */
-public class ChangeEmail {
+public class ChangeEmail extends Tool {
 
     /**
      * 更新账户邮箱
@@ -21,8 +22,6 @@ public class ChangeEmail {
                 || StringUtils.isEmpty(newEmail)){
             System.out.println("新旧email都不能为空");
         }else{
-            ApplicationContext context = new ClassPathXmlApplicationContext("spring-bean.xml");
-            Dao dao = context.getBean(Dao.class);
             System.out.println("oldEmail : "+oldEmail+",newEmail : "+newEmail);
             Integer developerid = null;
             boolean canUpdate = true;
