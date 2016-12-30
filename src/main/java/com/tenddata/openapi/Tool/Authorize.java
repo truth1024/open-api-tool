@@ -16,11 +16,16 @@ public class Authorize extends Tool {
             return;
         }
         String developerid = mapList.get(0).get("developerid").toString();
-        String insert1 = "insert into authorized_account values (null,'" + developerid + "','" + email + "','" +
-                "summarize,newUserStartup,activeAnalysis,timeRangeAnalysis,countryDistribution,provinceDistribution,versions,userMobiles,userPixel,userOs,userOperators,userNetworking,exception,exceptionList,exceptionDetail,jailbroken,partnerData,keepInfoCustom,keepInfoStandard,loseUser,loseFunnel,lifeCycle,userReturn,userStartup,useInterval,useTime,pageInfo,eventData,eventDetail,pushlist,smsAuthInfo,smsAuthDetail,smsAuthConfig,smsAuthApply,userQualityAccess" +
-                "',null" + ")";
-        dao.update(insert1);
         int authorizedid = dao.queryAuthorizedidByEmail(email, developerid);
+        if (authorizedid == 0) {
+            System.out.println("authorized_account已添加");
+        } else {
+            String insert1 = "insert into authorized_account values (null,'" + developerid + "','" + email + "','" +
+                    "summarize,newUserStartup,activeAnalysis,timeRangeAnalysis,countryDistribution,provinceDistribution,versions,userMobiles,userPixel,userOs,userOperators,userNetworking,exception,exceptionList,exceptionDetail,jailbroken,partnerData,keepInfoCustom,keepInfoStandard,loseUser,loseFunnel,lifeCycle,userReturn,userStartup,useInterval,useTime,pageInfo,eventData,eventDetail,pushlist,smsAuthInfo,smsAuthDetail,smsAuthConfig,smsAuthApply,userQualityAccess" +
+                    "',null" + ")";
+            dao.update(insert1);
+            authorizedid = dao.queryAuthorizedidByEmail(email, developerid);
+        }
         for (Map<String, Object> map : mapList) {
             String insert = "insert into authorized_list values (" + authorizedid + "," + map.get("productid") + "," + map.get("platformid") + ")";
             dao.update(insert);
