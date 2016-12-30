@@ -12,7 +12,7 @@ public class Dao {
     private JdbcTemplate jdbcTemplate;
 
     public int queryAuthorizedidByEmail(String email, String developerid) {
-        String sql = "select authorizedid from authorized_account where email = '" + email + "' and developerid= '" + developerid + "'";
+        String sql = "select authorizedid from authorized_account where licensee = '" + email + "' and developerid= '" + developerid + "'";
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 
