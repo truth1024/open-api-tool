@@ -11,20 +11,24 @@ import java.util.Map;
 public class Dao {
     private JdbcTemplate jdbcTemplate;
 
-
-    public int queryDeveloperidByEmail(String email){
-        String sql = "select developerid from developer where email = '"+email+"'";
+    public int queryAuthorizedidByEmail(String email, String developerid) {
+        String sql = "select authorizedid from authorized_account where email = '" + email + "' and developerid= '" + developerid + "'";
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 
-    public int queryDeveloperCountByTime(String startTime,String endTime){
-        String sql = "select count(1) from developer where registertime between '"+startTime+"' and '"+endTime+"'";
+    public int queryDeveloperidByEmail(String email) {
+        String sql = "select developerid from developer where email = '" + email + "'";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
+    public int queryDeveloperCountByTime(String startTime, String endTime) {
+        String sql = "select count(1) from developer where registertime between '" + startTime + "' and '" + endTime + "'";
         System.out.println(sql);
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 
-    public int queryProductCountByTime(String startTime,String endTime){
-        String sql = "select count(distinct productid) from product where registertime between '"+startTime+"' and '"+endTime+"'";
+    public int queryProductCountByTime(String startTime, String endTime) {
+        String sql = "select count(distinct productid) from product where registertime between '" + startTime + "' and '" + endTime + "'";
         System.out.println(sql);
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
@@ -38,7 +42,7 @@ public class Dao {
         return jdbcTemplate.queryForList(sql);
     }
 
-    public Map<String,Object> queryProductByAppidAndPlatfromid(String appid,String platformid) {
+    public Map<String, Object> queryProductByAppidAndPlatfromid(String appid, String platformid) {
         String sql = "select * from product where sequencenumber = '" + appid + "' and platformid = " + platformid + ";";
         return jdbcTemplate.queryForMap(sql);
     }

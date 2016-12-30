@@ -1,9 +1,6 @@
 package com.tenddata.openapi;
 
-import com.tenddata.openapi.Tool.ChangeEmail;
-import com.tenddata.openapi.Tool.Extend;
-import com.tenddata.openapi.Tool.NewCount;
-import com.tenddata.openapi.Tool.Open;
+import com.tenddata.openapi.Tool.*;
 
 /**
  * Created by LD on 2015/10/29 0029.
@@ -11,7 +8,7 @@ import com.tenddata.openapi.Tool.Open;
 public class Main {
 
     public static void main(String[] args) {
-        if(args.length > 1){
+        if (args.length > 1) {
             String sql = null;
             JobName jobName = null;
             try {
@@ -20,17 +17,17 @@ public class Main {
                 remind();
                 System.exit(0);
             }
-            switch (jobName){
-                case openapi :
+            switch (jobName) {
+                case openapi:
                     try {
                         sql = Open.openH5api(args[1]);
                     } catch (Exception e) {
                         System.out.println("请传入第二个参数");
                     }
                     break;
-                case changeemail :
+                case changeemail:
                     try {
-                        sql = ChangeEmail.changeEmail(args[1],args[2]);
+                        sql = ChangeEmail.changeEmail(args[1], args[2]);
                     } catch (Exception e) {
                         remind();
                     }
@@ -42,6 +39,9 @@ public class Main {
                     NewCount.developer(args[1]);
                     NewCount.product(args[1]);
                     break;
+                case addAuthorize:
+                    Authorize.addAddAuthorize(args[1], args[2]);
+                    break;
                 default:
                     remind();
                     break;
@@ -49,7 +49,7 @@ public class Main {
 //            if(!StringUtils.isEmpty(sql)){
 //                sendEmailContent(sql);
 //            }
-        }else{
+        } else {
             remind();
         }
     }
@@ -57,19 +57,20 @@ public class Main {
     /**
      * 提示信息
      */
-    public static void remind(){
+    public static void remind() {
         System.out.println("请传入至少两个参数");
         System.out.println("第一个参数是操作名称，可选参数：");
         for (JobName jobName : JobName.values()) {
-            System.out.println(jobName.toString()+"："+jobName.getDesc());
+            System.out.println(jobName.toString() + "：" + jobName.getDesc());
         }
     }
 
     /**
      * 生成发送邮件的内容
+     *
      * @param sql
      */
-    public static void sendEmailContent(String sql){
+    public static void sendEmailContent(String sql) {
         StringBuilder stringBuilder = new StringBuilder("-------------------以下是邮件发送内容，请复制----------------------\n");
         stringBuilder.append("帮执行下面的sql语句：").append("\n");
         stringBuilder.append("mysql数据库\n")
