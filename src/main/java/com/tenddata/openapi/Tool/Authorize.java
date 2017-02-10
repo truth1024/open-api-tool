@@ -21,7 +21,7 @@ public class Authorize extends Tool {
             System.out.println("authorized_account已添加");
         } else {
             String insert1 = "insert into authorized_account values (null,'" + developerid + "','" + email + "','" +
-                    "summarize,newUserStartup,activeAnalysis,timeRangeAnalysis,countryDistribution,provinceDistribution,versions,userMobiles,userPixel,userOs,userOperators,userNetworking,exception,exceptionList,exceptionDetail,jailbroken,partnerData,keepInfoCustom,keepInfoStandard,loseUser,loseFunnel,lifeCycle,userReturn,userStartup,useInterval,useTime,pageInfo,eventData,eventDetail,pushlist,smsAuthInfo,smsAuthDetail,smsAuthConfig,smsAuthApply,userQualityAccess" +
+                    "eventManage,eventLabelManage,userGroup,warningCenter,milepostManage,settingMail,versionManage,partnerManage,openApi,eventCloud,pushconfigure,summarize,newUserStartup,activeAnalysis,timeRangeAnalysis,countryDistribution,provinceDistribution,versions,userMobiles,userPixel,userOs,userOperators,userNetworking,exception,exceptionList,exceptionDetail,jailbroken,partnerData,keepInfoCustom,keepInfoStandard,loseUser,loseFunnel,lifeCycle,userReturn,userStartup,useInterval,useTime,pageInfo,eventData,eventDetail,pushlist,smsAuthInfo,smsAuthDetail,smsAuthConfig,smsAuthApply,userQualityAccess" +
                     "',null" + ")";
             dao.update(insert1);
             authorizedid = dao.queryAuthorizedidByEmail(email, developerid);
