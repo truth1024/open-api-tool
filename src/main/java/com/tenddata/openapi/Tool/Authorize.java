@@ -17,7 +17,7 @@ public class Authorize extends Tool {
         }
         String developerid = mapList.get(0).get("developerid").toString();
         int authorizedid = dao.queryAuthorizedidByEmail(email, developerid);
-        if (authorizedid == 0) {
+        if (authorizedid != 0) {
             System.out.println("authorized_account已添加");
         } else {
             String insert1 = "insert into authorized_account values (null,'" + developerid + "','" + email + "','" +
@@ -27,7 +27,7 @@ public class Authorize extends Tool {
             authorizedid = dao.queryAuthorizedidByEmail(email, developerid);
         }
         for (Map<String, Object> map : mapList) {
-            String insert = "insert into authorized_list values (" + authorizedid + "," + map.get("productid") + "," + map.get("platformid") + ")";
+            String insert = "insert into authorized_list values (" + authorizedid + "," + map.get("productid") + "," + map.get("platform") + ")";
             dao.update(insert);
         }
     }

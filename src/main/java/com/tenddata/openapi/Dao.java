@@ -12,8 +12,14 @@ public class Dao {
     private JdbcTemplate jdbcTemplate;
 
     public int queryAuthorizedidByEmail(String email, String developerid) {
-        String sql = "select authorizedid from authorized_account where licensee = '" + email + "' and developerid= '" + developerid + "'";
-        return jdbcTemplate.queryForObject(sql, Integer.class);
+        int authorizedid = 0;
+        try {
+            String sql = "select authorizedid from authorized_account where licensee = '" + email + "' and developerid= '" + developerid + "'";
+            return jdbcTemplate.queryForObject(sql, Integer.class);
+        } catch (Throwable e) {
+            System.out.println("查询出错" + e);
+            return authorizedid;
+        }
     }
 
     public int queryDeveloperidByEmail(String email) {
