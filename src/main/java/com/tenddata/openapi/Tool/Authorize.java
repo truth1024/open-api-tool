@@ -22,7 +22,7 @@ public class Authorize extends Tool {
         } else {
             String insert1 = "insert into authorized_account values (null,'" + developerid + "','" + email + "','" +
                     "eventManage,eventLabelManage,userGroup,warningCenter,milepostManage,settingMail,versionManage,partnerManage,openApi,eventCloud,pushconfigure,summarize,newUserStartup,activeAnalysis,timeRangeAnalysis,countryDistribution,provinceDistribution,versions,userMobiles,userPixel,userOs,userOperators,userNetworking,exception,exceptionList,exceptionDetail,jailbroken,partnerData,keepInfoCustom,keepInfoStandard,loseUser,loseFunnel,lifeCycle,userReturn,userStartup,useInterval,useTime,pageInfo,eventData,eventDetail,pushlist,smsAuthInfo,smsAuthDetail,smsAuthConfig,smsAuthApply,userQualityAccess" +
-                    "',null" + ")";
+                    "',null,1,null,null" + ")";
             dao.update(insert1);
             authorizedid = dao.queryAuthorizedidByEmail(email, developerid);
         }
